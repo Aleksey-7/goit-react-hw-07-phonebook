@@ -1,26 +1,31 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
-import { getContacts } from 'redux/contacts-slice';
+import { Container, Title, TitleColor, SubTitle } from './App.styled';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
-import { Message } from './Message/Message';
+import { selectError, selectIsLoading } from 'redux/selectors';
 import { GlobalStyle } from './GlobalStyle';
-import { Layout } from './Layout/Layout';
-import { Header } from './Header/Header';
+import { Loader } from './Loader/Loader';
+import { Phonebook } from './Phonebook/Phonebook';
 
 export function App() {
-  const contacts = useSelector(getContacts);
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
 
   return (
     <>
       <GlobalStyle />
-      <Layout>
-        <Header />
-      </Layout>
+      <Container>
+        <Title>
+          Phone<TitleColor>book</TitleColor>
+        </Title>
+        <Phonebook />
 
-      <Layout title="Contacts">
+        <SubTitle>Contacts</SubTitle>
         <Filter />
-        {contacts.length > 0 ? <ContactList /> : <Message />}
-      </Layout>
+        {isLoading && !error && <Loader />}
+        <ContactList />
+      </Container>
     </>
   );
 }

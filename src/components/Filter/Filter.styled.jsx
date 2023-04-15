@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const Label = styled.label`
+export const FilterLabel = styled.label`
+  width: 450px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-
-  margin-bottom: 50px;
+  gap: 10px;
+  font-size: 18px;
 `;
 
 export const Text = styled.p`
@@ -15,21 +15,15 @@ export const Text = styled.p`
 `;
 
 export const Input = styled.input`
+  padding: 5px;
   width: 80%;
-  height: 40px;
-  padding: 0 10px 0 10px;
-
-  border: 1px solid var(--second-bg-color);
+  border: 2px solid #ccc;
+  border-radius: 4px;
   outline: none;
-
-  color: var(--main-text-color);
-  font-size: 14px;
-
+  font-size: 17px;
+  transition: border var(--main-hover-animation);
+  &:hover,
   &:focus {
-    border-color: var(--accent-bg-color);
-  }
-  &::placeholder {
-    font-size: 12px;
-    color: var(--main-text-color);
+    border: 2px solid var(--accent-bg-color);
   }
 `;
